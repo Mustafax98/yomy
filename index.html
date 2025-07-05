@@ -2,35 +2,114 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <title>آلة حاسبة للفايدة الشهرية والصافي</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>آلة حاسبة للفايدة البنكية</title>
   <style>
-    body { font-family: Tahoma; background: #f4f4f4; padding: 20px; direction: rtl; }
-    h2 { color: #333; }
-    label, input { display: block; margin: 10px 0; }
-    input { padding: 8px; width: 250px; }
-    button { padding: 10px 20px; background: #007BFF; color: white; border: none; cursor: pointer; }
-    #result { margin-top: 20px; padding: 15px; background: #fff; border-radius: 10px; box-shadow: 0 0 5px #ccc; }
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Tahoma', sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 20px;
+      direction: rtl;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      max-width: 450px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+      display: block;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      background-color: #007bff;
+      color: white;
+      padding: 14px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #result {
+      margin-top: 20px;
+      background: #e9f9e9;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 16px;
+      color: #2b6b2b;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+
+      .container {
+        padding: 15px;
+      }
+
+      input, button {
+        font-size: 15px;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <h2>💰 آلة حاسبة للربح من الإيداع البنكي</h2>
+  <h2>💰 آلة حاسبة للربح البنكي</h2>
 
-  <label>💵 المبلغ الأساسي (جنيه):</label>
-  <input type="number" id="amount" placeholder="مثال: 100000">
+  <div class="container">
+    <label>💵 المبلغ الأساسي (جنيه):</label>
+    <input type="number" id="amount" placeholder="مثال: 100000">
 
-  <label>📅 مدة الإيداع (أيام):</label>
-  <input type="number" id="days" placeholder="مثال: 30">
+    <label>📅 عدد الأيام:</label>
+    <input type="number" id="days" placeholder="مثال: 30">
 
-  <label>📈 العائد السنوي (%):</label>
-  <input type="number" id="interest" placeholder="مثال: 10">
+    <label>📈 العائد السنوي (%):</label>
+    <input type="number" id="interest" placeholder="مثال: 10">
 
-  <label>🏦 عمولة السحب (جنيه):</label>
-  <input type="number" id="fee" placeholder="مثال: 100">
+    <label>🏦 عمولة السحب (جنيه):</label>
+    <input type="number" id="fee" placeholder="مثال: 100">
 
-  <button onclick="calculate()">احسب الربح الصافي</button>
+    <button onclick="calculate()">احسب الصافي</button>
 
-  <div id="result"></div>
+    <div id="result"></div>
+  </div>
 
   <script>
     function calculate() {
@@ -40,7 +119,7 @@
       let fee = parseFloat(document.getElementById('fee').value);
 
       if (isNaN(amount) || isNaN(days) || isNaN(interest) || isNaN(fee)) {
-        document.getElementById('result').innerHTML = "❌ من فضلك املأ كل الحقول.";
+        document.getElementById('result').innerHTML = "❌ من فضلك املأ كل البيانات.";
         return;
       }
 
@@ -51,7 +130,7 @@
       document.getElementById('result').innerHTML = `
         ✅ الربح من الفايدة: <strong>${profit.toFixed(2)} جنيه</strong><br>
         🏦 عمولة السحب: <strong>${fee.toFixed(2)} جنيه</strong><br>
-        💸 الصافي اللي هيجيلك: <strong>${net.toFixed(2)} جنيه</strong>
+        💸 الصافي بعد الخصم: <strong>${net.toFixed(2)} جنيه</strong>
       `;
     }
   </script>
